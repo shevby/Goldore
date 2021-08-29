@@ -16,14 +16,16 @@ Window {
     height: 760
     visible: true
     title: "Goldore"
+    Material.theme: Material.Dark
 
     property var colors: {
         "primary": "#455a64",
         "light": "#718792",
         "dark": "#1c313a",
-        "grey": "#9E9E9E",
+        "grey": "#EEEEEE",
         "white": "#F5F5F5",
-        "red": "#F44336"
+        "red": "#EF9A9A",
+        "pink": "#F48FB1"
     }
 
     property var settings: {
@@ -48,12 +50,14 @@ Window {
     property var mainScreen: Screens.MainScreen{}
     property var settingsScreen: Screens.SettingsScreen{}
     property var addCurrencyScreen: Screens.AddCurrencyScreen{}
+    property var addNeedScreen: Screens.AddNeedScreen{}
 
 
     property var screens: {
         "main": mainScreen,
         "settings": settingsScreen,
-        "addCurrency": addCurrencyScreen
+        "addCurrency": addCurrencyScreen,
+        "addNeed": addNeedScreen
     }
 
     property var db: undefined
@@ -61,18 +65,18 @@ Window {
     property var currentScreen: ["main"]
 
     function switchScreen(screenName) {
+
         if(Object.keys(screens).indexOf(screenName) < 0) {
             throw new Error("Screen \"" + screenName + "\" doesn't exist");
         }
 
         if(screenName === currentScreen[currentScreen.length - 1]) return;
 
-        if(screenName === "main") {
-            while(stackView.depth > 1) {
+        if(currentScreen.indexOf(screenName) >= 0) {
+            while(currentScreen[currentScreen.length - 1] !== screenName) {
                 stackView.pop();
+                currentScreen.pop();
             }
-
-            currentScreen = ["main"];
 
             main.screens[currentScreen[currentScreen.length - 1]].update();
 

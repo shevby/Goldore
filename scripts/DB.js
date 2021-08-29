@@ -159,10 +159,15 @@ function getIconById(tx, id) {
     return select(tx, ["rowid", "svg"], ICONS_TABLE_NAME, "rowid=" + id)[0].svg;
 }
 
+function getAllIcons(tx) {
+    return select(tx, ["rowid", "svg"], ICONS_TABLE_NAME);
+}
+
 
 function setSettings(tx, settings) {
     execute(tx, "DELETE FROM " + SETTINGS_TABLE_NAME);
     insert(tx, SETTINGS_TABLE_NAME, ["json"], [JSON.stringify(settings)]);
+    setLastUpdateTime(tx);
 }
 
 function getSettings(tx) {
@@ -190,18 +195,17 @@ function getCurrency(tx) {
     return currency;
 }
 
-function addExpanse(tx, currency, value, need) {
+function addExpense(tx, currency, value, need) {
     insert(tx, EXPENSES_TABLE_NAME, ["date", "currency", "value", "need"], [Date.now(), currency, value, need]);
+    setLastUpdateTime(tx);
 }
 
 function initDB(tx) {
-//    dropDB(tx);
     initIncomes(tx);
     initNeeds(tx);
     initCurrency(tx);
     initExpenses(tx);
     initIcons(tx);
     initSettings(tx);
-    addExpanse(tx, "UAH", 5, "Other");
     return getSettings(tx);
 }

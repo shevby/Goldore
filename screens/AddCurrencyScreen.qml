@@ -47,6 +47,7 @@ Item {
             validator: RegularExpressionValidator {
                regularExpression: new RegExp("^-?[0-9]+([.][0-9]{1,2})?$")
             }
+            inputMethodHints: Qt.ImhDigitsOnly
         }
 
     }

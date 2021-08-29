@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>components/MMenuItem.qml</file>
+        <file>components/qmldir</file>
+        <file>screens/AddCurrencyScreen.qml</file>
+        <file>screens/MainScreen.qml</file>
+        <file>screens/qmldir</file>
+        <file>screens/SettingsScreen.qml</file>
+        <file>scripts/DB.js</file>
+        <file>scripts/qmldir</file>
+        <file>main.qml</file>
+        <file>screens/SyncDBScreen.qml</file>
+        <file>screens/AddNeedScreen.qml</file>
+    </qresource>
+</RCC>

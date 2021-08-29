@@ -2,3 +2,4 @@ module Screens
 SettingsScreen 1.0 SettingsScreen.qml
 MainScreen 1.0 MainScreen.qml
 AddCurrencyScreen 1.0 AddCurrencyScreen.qml
+AddNeedScreen 1.0 AddNeedScreen.qml
